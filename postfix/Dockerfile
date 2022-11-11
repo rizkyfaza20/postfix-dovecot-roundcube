@@ -1,8 +1,9 @@
-FROM ubuntu:14.04
+FROM ubuntu:20.04
 LABEL maintainer="Valerii Kipkaev <kipkaev@kipkaev.name>"
+LABEL usedby="Rizky Faza"
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV USERS_QUOTA 50
+ENV USERS_QUOTA 25
 
 RUN apt-get update && \
     apt-get install -y wget postfix-mysql \
@@ -34,6 +35,6 @@ COPY roundcubemail/config /var/www/html/roundcubemail/config
 
 VOLUME [ "/var/log/", "/var/vmail/", "/var/lib/mysql" ]
 
-EXPOSE 25 80 110 143 465 993 995
+EXPOSE 2525 8089 1110 1143 4465 9393 9595
 
 ENTRYPOINT /run.sh

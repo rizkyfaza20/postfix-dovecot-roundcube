@@ -10,20 +10,20 @@ networks:
 
 services:
   mailserver:
-    restart: always
+    restart: unless-stopped
     build:
       context: ./postfix
-    container_name: mailserver
+    container_name: livecom-mailserver
     domainname: ${DOMAINNAME}
     hostname: ${HOSTNAME}
     ports:
-      - "25:25"
+      - "2525:25"
       - "${ROUNDCUBE_PORT}:80"
-      - "110:110"
-      - "143:143"
-      - "465:465"
-      - "993:993"
-      - "995:995"
+      - "1110:110"
+      - "1143:143"
+      - "4465:465"
+      - "9393:993"
+      - "9595:995"
     env_file:
       - .env
     volumes:
